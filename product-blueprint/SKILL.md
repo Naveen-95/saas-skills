@@ -68,6 +68,14 @@ Rules: one differentiator, not three. If a "table stakes" claim rests on one
 reference product having it, it is Later. The Later list is written out in
 full — it becomes saas-builder's NOT-in-v1 fence.
 
+Admin capability is plumbing but almost never v1 plumbing: the v1 default is
+running support from the platform dashboards (Supabase for data, Stripe for
+payments), with an in-app admin panel arriving via saas-builder's
+production-hardening ladder once real users justify it. It enters the v1
+buckets only when moderation or support IS part of the core loop (e.g. a
+marketplace). Record the decision either way — "Admin: dashboards until
+hardening" is a blueprint line, not an assumption.
+
 ### Pass 3 — Screen inventory
 
 Pick ONE information-architecture archetype from
@@ -87,6 +95,20 @@ screen whose job needs two sentences is two screens. The baseline set for any
 SaaS v1 (auth screens, first-run, main surface, detail/create, settings,
 paywall if paid, landing) is in the archetypes reference — start from it and
 delete, don't invent from zero.
+
+**Then connect the nodes — the inventory is screens; the flow is edges:**
+
+- Every primary action names its destination in its table row ("Save →
+  invoice detail", "Sign up → first-run step 1"). An action without a stated
+  destination is an undesigned redirect the build will improvise.
+- Write the **golden path** as one arrow chain from landing page to the
+  activation moment (landing → signup → first-run → main surface → core
+  action → result). If the chain busts the click budget, cut screens now,
+  not mid-build.
+- Default redirects unless a row overrides them: after create → the created
+  object's detail; after delete → the list it came from; after payment → the
+  thing just paid for (never a bare "success" page); after login → the main
+  surface, or the deep link originally requested.
 
 ### Pass 4 — Onboarding sequence
 
