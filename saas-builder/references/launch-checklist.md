@@ -63,6 +63,9 @@ Launch traffic is unrepeatable; uninstrumented launch days are lost forever.
       of the core action if the product benefits from being seen moving.
 - [ ] OG/meta tags verified by pasting the URL into WhatsApp/X/LinkedIn and
       checking the preview.
+- [ ] SEO basics on public pages: unique title + description per page,
+      `robots.txt` present, sitemap generated. App (authed) routes excluded
+      from indexing.
 
 ## 7. Launch motion
 

@@ -38,6 +38,11 @@ Vercel. Package manager: <npm/pnpm>.
 - Small, single-purpose commits with clear messages.
 - `PROGRESS.md` at root holds current state: done, key decisions, next.
   Read it at session start; update it at every commit.
+- Product decisions live in `docs/`: `spec.md` (scope + NOT-in-v1 fence),
+  `plan.md` (task order), `design.md` (visual direction + positioning),
+  `blueprint.md` if present (features/screens/flows). Check the spec's
+  NOT-in-v1 list before accepting any new feature; check `design.md`
+  before styling any screen.
 - Prefer server components; reach for client components only when needed.
 - Match existing file and naming patterns in the repo before inventing new ones.
 - Verify library APIs against current docs (Supabase auth, Stripe) rather than

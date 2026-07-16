@@ -26,6 +26,11 @@ npm install stripe
 For a new Supabase project, use the dashboard or the Supabase CLI. Keep the
 project ref, anon key, and service-role key in `.env.local` (never committed).
 
+As soon as auth works, create two standing test users (`test-a@...`,
+`test-b@...`, throwaway passwords in a non-tracked note). The two-user RLS
+test runs at every data-access commit and again at ship — it should never
+require setup, or it will get skipped.
+
 ## Environment variables
 
 `.env.local` (git-ignored — verify before pasting anything):

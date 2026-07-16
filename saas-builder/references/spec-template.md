@@ -27,10 +27,27 @@ Example:
 | <things> | id, user_id, ... | owner only |
 
 ## Auth
-<magic link / email+password / Google / none-for-v1>
+<- Method: magic link / email+password / Google / none-for-v1.
+- Email confirmation before first use: on or off. Supabase ships with it ON;
+  off is usually right for a v1's time-to-first-win — decide here, don't
+  discover it as a "signup is broken" bug.
+- A logged-out user hitting a protected URL is redirected to login, then
+  back to the URL they asked for (state it if different).>
 
-## Payments in v1?
-<Yes: one-time / subscription, ~price. Or: No, add later.>
+## Packaging (if money is in v1)
+<- Model: one-time / subscription, ~price.
+- Free tier: exactly what a non-paying user can do — or "none, paywall
+  before use".
+- Trial: none / N days / N free uses — and what happens when it ends: hard
+  block, read-only, or nag. Pick one.
+- The ONE metered limit v1 enforces (e.g. 3 exports/day free, unlimited
+  paid) and the exact at-limit behaviour (blocked with an upgrade prompt).
+Gating touches every feature — decide it here; improvised entitlement logic
+is how billing bugs are born. If no money in v1: "No, add later.">
+
+## Transactional email in v1
+<The complete list — usually just password reset (plus signup confirmation
+if it's on) and Stripe's built-in payment receipt. Anything else is Later.>
 
 ## AI features (include ONLY if the core flow calls an LLM / paid API)
 <- Model + one-line why (default to the cheapest model that passes the spike).

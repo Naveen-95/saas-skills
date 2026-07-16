@@ -88,6 +88,11 @@ These are the traps on this stack. When a symptom matches, look here before
 
 ### General
 
+- **Page is slow** → measure before optimizing: usually sequential awaited
+  fetches that could be parallel (waterfalls), a missing index on a
+  filtered/sorted column, or a query-per-item loop (N+1). Check the network
+  tab and Supabase's query-performance page first; component-level
+  optimization is almost never the answer.
 - **Type error after an edit** → read what the type actually says; it's usually
   pointing at a real mismatch, not noise. Don't `any`-cast it away.
 - **"It broke after I added a package"** → check the dependency's breaking
