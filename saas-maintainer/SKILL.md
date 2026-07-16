@@ -52,6 +52,31 @@ Before deciding anything:
 Never start editing blind. If you can't yet point to the file and line that
 matters, you are not ready to change it.
 
+### Adopting an app built elsewhere (no instruction file, no docs)
+
+When the app was built by another agent or tool and arrives with no
+instruction file, no `docs/`, and no PROGRESS.md, run this once before any
+requested work — it takes under an hour, not a week:
+
+1. **Map the minimum:** stack and commands (package.json), the tables and
+   their RLS state, the auth model, any payment surface, how it deploys.
+   Write what you find into a fresh instruction file (CLAUDE.md/AGENTS.md)
+   and a PROGRESS.md — from now on this project has a memory.
+2. **Security triage, immediately — not on request.** Inherited vibe-coded
+   apps predictably carry the classic holes. Check, using saas-builder's
+   `references/security-checklist.md`: RLS enabled and owner-scoped on
+   every user-data table (test with two users), no secret in the repo or
+   its git history (a committed secret means rotate the key, not delete
+   the line), webhook signature verification present, service-role key and
+   other privileged secrets server-only. Report findings to the user
+   before feature work — a critical hole outranks the feature they asked
+   for, and they decide the order knowing that.
+3. **Rebuild docs lazily, not upfront.** No full reverse-engineered spec.
+   Start `docs/spec.md` as a spec-of-record with only what the security
+   triage and the first change touched; it grows as areas get worked on.
+
+Then the normal paths below apply.
+
 ---
 
 ## Incidents — when users are being harmed RIGHT NOW

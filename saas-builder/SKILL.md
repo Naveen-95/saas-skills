@@ -297,7 +297,11 @@ background jobs, and the teams/enterprise ladder when seats demand it. Do NOT fr
 validation — they are cheap insurance for a product with users and wasted
 effort for one without. When the user says things like "make it production
 ready", "harden it", or "we're getting real users", this phase is what they
-mean.
+mean. If the app was built elsewhere (another agent, another tool) and has
+no instruction file or docs, first run the saas-maintainer skill's
+"adopting an app built elsewhere" step — baseline docs plus an immediate
+security triage — before climbing this ladder; hardening an unaudited
+codebase polishes over its holes.
 
 ---
 
