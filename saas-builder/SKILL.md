@@ -153,6 +153,16 @@ fields (a lead's `status`, an order's lifecycle), and which role can do what
 the MVP-appropriate architecture record; relationships invented mid-build
 are the ones that need painful migrations later.
 
+**Conditional risk sketch.** If the product introduces a trust boundary the
+stack's standard gates don't already cover — regulated data, user file
+uploads, AI that takes actions or shows one user's model output to another,
+inbound integrations/webhooks beyond Stripe, or any cross-tenant platform
+access — add a half-page risk sketch to the plan: what a hostile user can do
+through that boundary, the worst credible outcome, and which task carries
+the check that closes each path. `references/security-checklist.md` covers
+the stack's standard surfaces; product-specific abuse paths live in the
+plan or nowhere.
+
 Order the work so a thin slice works end-to-end early: auth -> one real table
 with RLS -> the single core action -> then polish. Do not scaffold 20 tables
 up front. **Risk-first exception:** if the product's core value depends on
