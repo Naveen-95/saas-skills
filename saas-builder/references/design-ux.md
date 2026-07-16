@@ -1,0 +1,134 @@
+# Design & UX flow
+
+Two jobs: (1) make the product look deliberately designed, not AI-default;
+(2) make the flow so simple a distracted user on a phone reaches value without
+thinking. If the official `frontend-design` skill is installed, use it for
+visual craft; this file adds the product-flow layer it doesn't cover.
+
+---
+
+## Visual direction (set once, in Phase 3, before any screen)
+
+- **Derive a personality from the reference product** named in intake (Phase 0,
+  question 5). One adjective pair: "warm + trustworthy", "sharp + technical",
+  "playful + fast". Every visual choice serves it.
+- **Source the choices, don't invent them.** If the `ui-ux-pro-max` skill is
+  installed, query its database for this product type: a matching style, a
+  color palette, and a font pairing (its style/color/typography/product
+  domains). Pick from curated options, then adapt to the personality — this
+  beats improvising a palette from memory.
+- **Persist the direction to `docs/design.md`** alongside the spec and plan:
+  the personality pair, the chosen style and palette names, the font pairing,
+  the token values, and the reference product. Every later screen — and every
+  later session — styles against this file, not against memory. A restyle
+  request starts by updating `docs/design.md`, then propagating to config.
+- **Set design tokens before the first screen and never improvise after:**
+  one font pairing (one display, one body — not defaults), a 4/8px spacing
+  scale, ONE accent color plus neutrals (not three accents), one corner-radius
+  value, one shadow style. Put them in Tailwind config / CSS vars so every
+  component inherits.
+- **Kill the AI-default look:** no unmodified shadcn gray-on-white, no
+  centered-everything, no purple-gradient hero because it's the model's habit.
+  Pick a real background tone, real type scale contrast (big headings, quiet
+  body), generous whitespace.
+- Dark mode is NOT v1 unless the reference product demands it.
+
+## Flow rules (apply to every screen in Phase 4)
+
+- **Click budget: 3.** From opening the app to completing the core action —
+  three taps/clicks for a returning user. If a flow needs more, cut steps, not
+  add instructions.
+- **One primary action per screen.** One visually dominant button; everything
+  else is secondary/quiet. If two things compete, the screen is two screens or
+  one of them is wrong.
+- **Defaults over decisions.** Pre-select the sensible option everywhere
+  (plan, date, visibility). Every decision you make for the user is a step
+  they don't abandon on.
+- **Forms: minimum viable fields.** v1 signup is email + password or just
+  phone/OTP — never name/company/phone/how-did-you-hear. Ask for data at the
+  moment it's needed, not upfront.
+- **Progressive disclosure.** Advanced options live behind "More"; the happy
+  path shows only what the happy path needs.
+- **Mobile-first, literally.** Design at 390px width first, expand to desktop
+  second. Tap targets 44px+. Test every flow at mobile width before calling
+  it done — for India-market products, mobile IS the product.
+
+## First-run experience (the empty-workspace problem)
+
+A new user lands in an empty app and leaves. Prevent it:
+
+- **The first screen after signup points at the core action** — one clear
+  "create your first X" state, not an empty dashboard with a sidebar of
+  options.
+- Empty states teach: every empty list says what goes here and has the button
+  that creates it.
+- Time-to-first-win under 2 minutes. If the core action needs setup (connect
+  something, upload something), collapse setup into the first run of the
+  action itself.
+- Seed a demo example where it helps ("here's a sample project — make your
+  own") — but make it dismissible.
+- **Name the activation moment** in one sentence — the specific action after
+  which a new user has felt the product's value ("sent their first invoice",
+  "published their first page"). The entire first-run flow is engineered to
+  reach it; it is also the exact event the launch checklist's analytics
+  funnel tracks. If you can't name it, the onboarding has no target.
+- **No product tours.** Overlay walkthroughs, multi-step tooltip sequences,
+  and "let us show you around" modals are what products add when the first
+  screen failed at its job. A well-aimed first screen plus teaching empty
+  states makes the product self-explanatory; if a feature needs a tooltip
+  essay, redesign the feature.
+- **Plan for the user who stalls.** Some users sign up and don't reach
+  activation. v1 response is minimal: the first screen keeps pointing at the
+  core action on every return visit (no "welcome back" dashboard that hides
+  it). A single reminder email nudging toward the activation moment is a
+  Phase 6 addition once transactional email exists — never a drip campaign
+  in v1.
+
+## Landing page (part of v1, not an afterthought)
+
+The app needs a front door. Scaffold it in Phase 3 as the public root. Write
+its copy per `copywriting.md` — positioning first, buyer language, competitor
+phrases banned — not by pasting spec language into a hero:
+
+- Hero: headline and CTA built per `copywriting.md`, a real screenshot or
+  product visual — no stock illustrations.
+- One page: problem line, 3 concrete benefits (outcomes, not features),
+  pricing (even if one plan), FAQ (3–5 real objections), footer with
+  terms/privacy/support.
+- Meta + OG tags set (title, description, share image) so WhatsApp/social
+  shares render properly — for WhatsApp-first distribution this is not
+  optional.
+- The landing page loads fast: static/server-rendered, optimized images. It
+  will be opened from ads on mid-range phones.
+
+## Polish passes (for the screens that matter)
+
+The core screen and the landing page deserve refinement beyond "works". Good
+design is passes, not one shot. Run these one at a time, pausing for the
+user's reaction after each:
+
+1. **Layout** — structure and spacing only; get the bones right.
+2. **Hierarchy** — the most important thing must be the most obvious; size,
+   weight, and position guide the eye.
+3. **Color + type** — apply the tokens with intention, not decoration.
+4. **Interaction** — hover/press feedback, transitions, loading/empty/error
+   states feel deliberate.
+5. **Polish** — alignment, spacing fine-tuning, the last 5%.
+
+The taste test after the passes: would this screen look out of place next to
+the reference product? If yes, name the specific offending element and run
+another pass on it. The user supplies the taste; ask them to look.
+
+## Microcopy rules
+
+- Buttons say the outcome, not the mechanism: "Get my report", not "Submit".
+- Errors say what to DO: "That email is already registered — log in instead?"
+  not "Error: duplicate key".
+- No lorem ipsum ever reaches a commit — write real copy inline, flag weak
+  copy for the user to improve.
+
+## Verify (add to the Phase 4 check for every screen)
+
+- Screenshot at 390px width — does the primary action dominate? Could your
+  least technical user say what to tap?
+- Count the clicks to core value — over budget means redesign, not tooltip.
