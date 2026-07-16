@@ -108,6 +108,14 @@ flow for v1, the data model (tables + who-can-see-what), the auth model, whether
 Stripe is in v1, core behaviours in EARS notation, acceptance criteria per
 must-have feature, and an explicit **"NOT in v1"** list to kill scope creep.
 
+**When the user arrives with a feature list**, treat it as candidates, not
+committed scope: sort each into must-have-v1 or NOT-in-v1 with a one-line
+reason, and present the split at the checkpoint. The user's insistence
+always wins — but it wins as a visible decision with the schedule impact
+stated, not as silent scope absorption. (If the list is long or the
+screens implied by it are fuzzy, that is the signal to run
+product-blueprint first.)
+
 **Self-audit before showing it.** Attack your own spec before the user sees it:
 (a) any requirement interpretable two ways — rewrite it; (b) missing error
 cases — what happens on bad input, failed external call, payment failure, empty

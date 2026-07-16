@@ -54,6 +54,11 @@ counts as one). You are looking for **table stakes** — features users of this
 category assume exist and whose absence reads as broken — not for features to
 copy wholesale.
 
+Features the user named in their idea are candidates too — they enter the
+same bucket tests below, not straight into v1. If one lands in Later,
+propose that with a one-line reason; the user can override at the
+checkpoint, and an override goes into v1 as a deliberate, costed decision.
+
 Sort every candidate feature into exactly one bucket:
 
 | Bucket | Test | v1? |
