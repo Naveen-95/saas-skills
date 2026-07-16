@@ -81,6 +81,12 @@ etc. Everything here goes on a "later" list, not into the build.>
 ## Success check
 <How we'll know the MVP works: e.g. "a second test user cannot see the first
 user's rows, and a test-mode payment unlocks the core action.">
+
+## Assumptions & open questions
+<The things this spec takes on faith (from the self-audit) and the questions
+only the user or reality can answer — each with how/when it gets resolved.
+An assumption that would sink the product if false belongs in the Phase 2
+risk-first spike, not on this list.>
 ```
 
 Guidance:

@@ -68,6 +68,15 @@ Rules: one differentiator, not three. If a "table stakes" claim rests on one
 reference product having it, it is Later. The Later list is written out in
 full — it becomes saas-builder's NOT-in-v1 fence.
 
+**The write side implies a read side.** Every feature that creates or
+changes data must name, in its bucket entry, where each affected actor sees
+and manages that data — a lead-capture form is not a feature until the
+lead list/detail its owner works from exists in the screen inventory, with
+its lifecycle states (new → contacted → converted/lost) named. If the
+actors include both a tenant admin and the platform owner, they are
+different roles: the platform owner does not see tenant content by default;
+cross-tenant access needs a stated support reason.
+
 Admin capability is plumbing but almost never v1 plumbing: the v1 default is
 running support from the platform dashboards (Supabase for data, Stripe for
 payments), with an in-app admin panel arriving via saas-builder's
