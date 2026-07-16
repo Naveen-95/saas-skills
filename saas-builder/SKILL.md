@@ -350,29 +350,15 @@ codebase polishes over its holes.
 
 ## Reference files
 
-Read these as needed — do not load all of them up front:
+Read as needed — never all up front. Each is introduced at its point of use
+in the phases above; this list is only the index:
 
-- `references/stack.md` — exact setup commands, folder layout, the churn-prone
-  APIs to verify, and which MCP servers help (Supabase, Playwright, Context7,
-  Stripe, Vercel) with their tradeoffs.
-- `references/spec-template.md` — the one-screen spec format for Phase 1.
-- `references/claude-md-template.md` — drop-in CLAUDE.md for the new project.
-- `references/security-checklist.md` — the RLS / secrets / auth / Stripe gates.
-  Consult the relevant section during Phase 4 and run it fully in Phase 5.
-- `references/production-hardening.md` — the Phase 6 ladder from working MVP to
-  production-grade: abuse protection, DB integrity, backups, observability,
-  staging/CI, admin, full payments lifecycle, compliance.
-- `references/design-ux.md` — visual direction and tokens, the 3-click flow
-  budget, first-run/onboarding, the landing page, microcopy. Apply during
-  Phase 3 setup and to every screen in Phase 4.
-- `references/copywriting.md` — positioning and landing-page copy: the
-  onlyness statement, voice-of-customer language, competitor-phrase bans,
-  section-by-section copy rules. Apply when writing the landing page and any
-  user-facing marketing copy.
-- `references/launch-checklist.md` — the pre-announcement gate: product
-  completeness, domain/HTTPS, analytics funnel instrumentation, support and
-  marketing surface, beta -> public launch sequence, first success review.
-  Run at the end of Phase 5 when the user is ready to launch publicly.
-- `references/hooks.md` — deterministic gates (secret-blocking commit hook,
-  fast typecheck-on-edit). Offer during Phase 3; these enforce what
-  instructions can only encourage.
+- `references/stack.md` — setup commands, secret boundaries, churn-prone APIs, MCP servers (Phase 3).
+- `references/spec-template.md` — the spec format (Phase 1).
+- `references/claude-md-template.md` — project instruction file (Phase 3).
+- `references/security-checklist.md` — sections in Phase 4, full run in Phase 5.
+- `references/production-hardening.md` — the Phase 6 ladder.
+- `references/design-ux.md` — visual/motion direction and per-screen rules (Phases 3–4).
+- `references/copywriting.md` — positioning and landing copy (Phase 3).
+- `references/launch-checklist.md` — the deployed→announced gate (end of Phase 5).
+- `references/hooks.md` — deterministic secret/typecheck gates (offer in Phase 3).

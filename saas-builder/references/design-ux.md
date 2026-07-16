@@ -55,10 +55,9 @@ the product type. Record in `docs/design.md`:
   or making waiting feel understood. Expressive choreography (scroll
   reveals, hero staggers) belongs on the landing page, where visitors are
   judging whether the product feels premium — never inside the work. A
-  premium dashboard is still a calm dashboard: number tickers, shimmer
-  skeletons, and subtle card accents (see MagicUI's quiet end in
-  `stack.md`) — the premium feel is carried by typography, spacing, and
-  depth, with motion as the garnish.
+  premium dashboard is still a calm dashboard: its premium feel is carried
+  by typography, spacing, and depth, with motion as garnish only — the
+  sanctioned garnish list lives in `stack.md` (MagicUI's quiet end).
 - **Hard rules:** animate `transform` and `opacity` only — never layout
   properties (width/height/top/left), which cause jank; skeletons or
   progress over indefinite spinners; honor `prefers-reduced-motion` (drop
