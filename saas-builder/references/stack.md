@@ -78,6 +78,14 @@ supabase/
   auth pages) are good raw material — but always restyle them to the
   project's design tokens per `design-ux.md`; unmodified defaults are the
   AI-default look.
+- **Expressive layer: MagicUI** (free, open-source, Tailwind + motion-based)
+  for the landing page's premium feel — hero effects, animated text reveals,
+  marquees, background treatments. Division of labor: shadcn for product
+  screens (calm, reliable), MagicUI for the landing page (where visitors
+  judge premium-ness). Same restyle rule applies, and app screens get MagicUI
+  effects only when they serve the approved motion personality. The shadcn
+  and MagicUI MCP servers let the agent search and pull real component code
+  instead of guessing APIs — both low-risk, worth adding for the build.
 - **Full-app boilerplates (ShipFast, Supastarter, and similar): default no.**
   They save a human days of typing, but for an agent the economics invert:
   scaffolding the same surface takes hours with every line generated against

@@ -19,7 +19,10 @@ visual craft; this file adds the product-flow layer it doesn't cover.
   beats improvising a palette from memory.
 - **Persist the direction to `docs/design.md`** alongside the spec and plan:
   the personality pair, the chosen style and palette names, the font pairing,
-  the token values, and the reference product. Every later screen — and every
+  the token values (including motion), the layout direction (density:
+  spacious/standard/dense; navigation style; card/table/form conventions),
+  icon style, component sources (shadcn base, MagicUI for landing
+  expressiveness), and the reference product. Every later screen — and every
   later session — styles against this file, not against memory. A restyle
   request starts by updating `docs/design.md`, then propagating to config.
 - **Set design tokens before the first screen and never improvise after:**
@@ -30,7 +33,9 @@ visual craft; this file adds the product-flow layer it doesn't cover.
 - **Kill the AI-default look:** no unmodified shadcn gray-on-white, no
   centered-everything, no purple-gradient hero because it's the model's habit.
   Pick a real background tone, real type scale contrast (big headings, quiet
-  body), generous whitespace.
+  body), generous whitespace. One visual style per product — never mix — and
+  gradients, glass, blur, or decorative effects appear only where they serve
+  the personality recorded in `docs/design.md`, never as garnish.
 - Dark mode is NOT v1 unless the reference product demands it.
 
 ## Motion (part of the tokens, not a garnish)

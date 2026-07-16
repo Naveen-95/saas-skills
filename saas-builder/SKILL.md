@@ -330,6 +330,11 @@ mean.
 - **Say what you did NOT do.** End substantial steps with a one-line note on
   what is stubbed, skipped, or needs the user's attention.
 - **Hold scope.** New ideas mid-build go on the "later" list, not into v1.
+- **Some decisions are never the agent's.** Pricing and refund policy,
+  legal/compliance signoff, data retention and deletion policy, production
+  accounts/domains/vendor contracts, launch approval, and any irreversible
+  data migration belong to the user (or a qualified professional). Surface
+  each with a concrete recommendation and wait — do not decide by default.
 
 ## Reference files
 
