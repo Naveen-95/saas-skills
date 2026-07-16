@@ -206,11 +206,12 @@ compaction and `/clear`.
    personality from the reference product, define the design tokens (font
    pairing, spacing, one accent, radius) in config BEFORE building any screen,
    and scaffold the public landing page as the root route. If the
-   `ui-ux-pro-max` skill is installed, query it for the style, palette, and
-   font pairing matched to this product type instead of inventing them. Write
-   the chosen direction to `docs/design.md` — personality, tokens, style and
-   palette names, and the reference product — so every later screen and
-   session styles against the same record. If the official `frontend-design`
+   `ui-ux-pro-max` skill is installed, query it for the style, palette, font
+   pairing, and motion level matched to this product type instead of
+   inventing them. Write the chosen direction to `docs/design.md` —
+   personality, tokens (including motion tokens), style and palette names,
+   and the reference product — so every later screen and session styles
+   against the same record. If the official `frontend-design`
    skill is installed, apply it here too.
 6. Commit. From here, commit after every working step.
 

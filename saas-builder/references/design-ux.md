@@ -33,6 +33,30 @@ visual craft; this file adds the product-flow layer it doesn't cover.
   body), generous whitespace.
 - Dark mode is NOT v1 unless the reference product demands it.
 
+## Motion (part of the tokens, not a garnish)
+
+Motion is a token set decided in Phase 3 with the rest — never improvised
+per screen. If `ui-ux-pro-max` is installed, query its motion guidance for
+the product type. Record in `docs/design.md`:
+
+- **Personality and level:** calm / crisp / premium / playful. Low for dense
+  work tools, medium for polished SaaS, high only for marketing or creative
+  surfaces.
+- **Tokens:** one duration scale (fast ~150ms for hover/press feedback,
+  medium ~200–250ms for menus/modals/drawers/list updates, slow ~300ms+ for
+  landing reveals) and one easing. Every transition uses a token value.
+- **The split:** the app stays fast and calm — motion earns its place only
+  by explaining a change, confirming an action, preserving spatial context,
+  or making waiting feel understood. Expressive choreography (scroll
+  reveals, hero staggers) belongs on the landing page, where visitors are
+  judging whether the product feels premium — never inside the work.
+- **Hard rules:** animate `transform` and `opacity` only — never layout
+  properties (width/height/top/left), which cause jank; skeletons or
+  progress over indefinite spinners; honor `prefers-reduced-motion` (drop
+  movement, keep subtle opacity).
+- **Library:** CSS transitions for simple feedback; a React motion library
+  for app interactions; GSAP only for landing-page choreography.
+
 ## Flow rules (apply to every screen in Phase 4)
 
 - **Click budget: 3.** From opening the app to completing the core action —
@@ -147,3 +171,5 @@ Not optional and not a hardening item — retrofitting is far costlier:
 - Count the clicks to core value — over budget means redesign, not tooltip.
 - Tab through the screen once: focus visible, order sensible, everything
   reachable.
+- Transitions: each one has a purpose, uses the motion tokens, runs smoothly
+  at mobile width, honors reduced motion, and shifts no layout.

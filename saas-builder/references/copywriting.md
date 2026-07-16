@@ -24,6 +24,22 @@ Answer these from the spec and the Phase 0/0b research, in writing:
 Save the four answers at the top of `docs/design.md` under "Positioning" —
 every future page (pricing, ads, emails, App Store) reuses them.
 
+## Research before writing (when the evidence isn't already on disk)
+
+Clone builds inherit research from Phase 0b; greenfield builds often have
+none — and that vacuum is where invented positioning comes from. Before
+drafting public-facing copy, check: are the buyer's own words, their real
+objections, the alternatives they use today, and the differentiation
+already evidenced in the spec, blueprint, or intake? If yes, say so and
+write. If not, research first: 3–5 credible sources — competitor homepages
+and pricing pages, customer reviews of the alternatives (1-star reviews of
+the incumbent especially), public discussions where the buyer complains in
+their own words, the phrases they would type into search. Save findings to
+`docs/copy-research.md` (vocabulary, objections, claims worth making, the
+shared phrases now banned) and draw the headline angles and FAQ from it.
+Never fill the gap by inventing — no fabricated proof, testimonials, or
+outcomes, under any deadline.
+
 ## Use competitor research as a repellent, not a template
 
 From the Phase 0b feature map, list the phrases the competitors all use
