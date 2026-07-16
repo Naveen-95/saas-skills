@@ -78,14 +78,19 @@ supabase/
   auth pages) are good raw material — but always restyle them to the
   project's design tokens per `design-ux.md`; unmodified defaults are the
   AI-default look.
-- **Expressive layer: MagicUI** (free, open-source, Tailwind + motion-based)
-  for the landing page's premium feel — hero effects, animated text reveals,
-  marquees, background treatments. Division of labor: shadcn for product
-  screens (calm, reliable), MagicUI for the landing page (where visitors
-  judge premium-ness). Same restyle rule applies, and app screens get MagicUI
-  effects only when they serve the approved motion personality. The shadcn
-  and MagicUI MCP servers let the agent search and pull real component code
-  instead of guessing APIs — both low-risk, worth adding for the build.
+- **Expressive layer: MagicUI** (free, open-source, Tailwind + motion-based).
+  On the landing page, use its full range — hero effects, animated text
+  reveals, marquees, background treatments — that's where visitors judge
+  premium-ness. In the app and dashboard, premium is allowed but calm: pick
+  from MagicUI's quiet end — animated number tickers on stat cards, shimmer
+  skeletons, subtle border/spotlight accents on key cards, gentle press and
+  hover feedback — never scroll choreography or attention-grabbing effects
+  inside surfaces where users work. Dashboard premium-ness comes first from
+  typography, spacing, and depth hierarchy; MagicUI garnishes it, it doesn't
+  carry it. Everything restyled to the project's tokens and bound by the
+  motion level in `docs/design.md`, including reduced-motion behavior. The
+  shadcn and MagicUI MCP servers let the agent search and pull real
+  component code instead of guessing APIs.
 - **Full-app boilerplates (ShipFast, Supastarter, and similar): default no.**
   They save a human days of typing, but for an agent the economics invert:
   scaffolding the same surface takes hours with every line generated against
@@ -129,9 +134,13 @@ When docs and memory disagree, docs win.
 ## MCP servers worth adding (and the tradeoffs)
 
 MCP servers give Claude Code live access to external systems. Add them
-deliberately — each one is also attack surface. Install via
-`claude mcp add ...` or the project `.mcp.json`; check current syntax in the
-Claude Code docs.
+deliberately — each one is also attack surface. **Connecting an MCP server
+is always the user's decision**: propose it by name, say what it accesses
+and why the build needs it, and get an explicit yes before adding it to
+`.mcp.json` or running `claude mcp add ...` — never connect one silently.
+The same applies to installing companion skills (ui-ux-pro-max,
+frontend-design): suggest, don't assume. Check current install syntax in
+the Claude Code docs.
 
 - **Supabase MCP** — inspect schema, run queries, manage migrations from inside
   Claude Code. Big productivity win for this stack. **Tradeoff/caution**: scope
