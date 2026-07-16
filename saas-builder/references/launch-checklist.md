@@ -24,6 +24,12 @@ a quiet gap.
 - [ ] Full `security-checklist.md` passes against production (RLS second-user
       test, secrets, webhook signature, input validation).
 - [ ] Custom domain connected, HTTPS live, www/apex both resolve.
+- [ ] Every endpoint reachable without login, and every expensive one (AI
+      calls, email sends, uploads, public forms) has rate limits, server-side
+      input caps, and spam protection BEFORE the announcement — public
+      launch is when abuse starts, and one hostile script against an
+      unmetered AI endpoint is a real bill. This item alone does not wait
+      for the hardening phase.
 - [ ] Backups/PITR on; rollback known; uptime monitor and error tracking
       receiving events (`production-hardening.md` §§4–5, 13).
 
@@ -42,6 +48,8 @@ Launch traffic is unrepeatable; uninstrumented launch days are lost forever.
 - [ ] Product events for the funnel: signup -> activation (first core action
       completed) -> repeat usage. Define "activated" in one sentence and
       track exactly that.
+- [ ] One usage event per must-have feature from the spec, so "which
+      features earn their keep" is answerable in week one.
 - [ ] The success signal from `docs/spec.md` is visible on a dashboard the
       user can open.
 

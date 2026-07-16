@@ -53,6 +53,9 @@ message — covering only what changes the build:
    roughly what price? (Drives whether Stripe goes in now or later.)
 4. **Any hard data-privacy needs** — is user data seen only by its owner, or
    shared/team-visible? (This decides the RLS model, so it matters early.)
+   And does the product touch a regulated domain — health, finance, minors,
+   or similar? (That changes the compliance surface and is cheaper to know
+   now than after launch.)
 5. **One reference product** they want it to feel like.
 
 Do not ask about tech stack, hosting, or frameworks unless the user raises it —
@@ -142,6 +145,13 @@ For each step, choose the verification by what the step risks, not by habit:
 | Auth/data access/storage | two-user test: user B cannot reach user A's data |
 | Payments/webhooks | signature verified, idempotent, test-mode end-to-end run |
 | Schema/destructive change | migration reviewed, backup/rollback plan stated |
+
+When the product has more than one role or more than a few tables, the
+plan's first artifact is a schema sketch: entities, relationships, state
+fields (a lead's `status`, an order's lifecycle), and which role can do what
+— reviewed against the spec's data model before any task is sliced. This is
+the MVP-appropriate architecture record; relationships invented mid-build
+are the ones that need painful migrations later.
 
 Order the work so a thin slice works end-to-end early: auth -> one real table
 with RLS -> the single core action -> then polish. Do not scaffold 20 tables

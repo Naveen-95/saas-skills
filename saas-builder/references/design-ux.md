@@ -127,8 +127,23 @@ another pass on it. The user supplies the taste; ask them to look.
 - No lorem ipsum ever reaches a commit — write real copy inline, flag weak
   copy for the user to improve.
 
+## Accessibility baseline (every screen, not a later phase)
+
+Not optional and not a hardening item — retrofitting is far costlier:
+
+- Every interactive element reachable and operable by keyboard, with a
+  visible focus state (never remove focus rings).
+- Text contrast 4.5:1 minimum (3:1 for large text); never color alone to
+  convey state — pair it with an icon or text.
+- Every form input has a real label (not placeholder-only); errors are
+  announced next to the field they belong to.
+- Meaningful images get alt text; icon-only buttons get aria-labels.
+- Tap targets 44px+ (already in the flow rules — it's also accessibility).
+
 ## Verify (add to the Phase 4 check for every screen)
 
 - Screenshot at 390px width — does the primary action dominate? Could your
   least technical user say what to tap?
 - Count the clicks to core value — over budget means redesign, not tooltip.
+- Tab through the screen once: focus visible, order sensible, everything
+  reachable.

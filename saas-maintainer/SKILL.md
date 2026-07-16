@@ -36,8 +36,12 @@ Supabase + Stripe + Vercel. Adjust if the repo says otherwise.
 
 Before deciding anything:
 
-- Read `CLAUDE.md` if the project has one — it carries the conventions and the
-  "Do NOT" rules.
+- Read the project instruction file — `CLAUDE.md` or `AGENTS.md`, whichever
+  exists (both, if both) — it carries the conventions and the "Do NOT" rules.
+- For feature work, also read the product decision docs when present:
+  `docs/spec.md` (scope + NOT-in-v1 fence), `docs/blueprint.md`
+  (features/screens/flows), `docs/design.md` (visual direction). A feature
+  added against stale or unread docs is how a product loses its shape.
 - Get a quick map of the area involved: which routes, which tables, which
   files. Skim, don't rewrite.
 - Classify the request: **bug fix** or **feature add**? They take different
@@ -49,6 +53,28 @@ Never start editing blind. If you can't yet point to the file and line that
 matters, you are not ready to change it.
 
 ---
+
+## Incidents — when users are being harmed RIGHT NOW
+
+If production is down, data is leaking, or payments are failing, the
+reproduce-first rule inverts: **mitigate first, diagnose second.**
+
+1. **Stop the harm:** revert to the previous deployment (one action in
+   Vercel), or disable the offending feature/route. Do not debug a live
+   fire.
+2. **Preserve evidence before it rots:** error tracker snapshot, relevant
+   logs, the deploy that broke it, timestamps.
+3. **Tell the user the state plainly:** what's affected, what was done,
+   what's next.
+4. Once stable, run Path A properly on the preserved evidence — the
+   mitigation was not the fix.
+5. **Close with a prevention, not just a note:** a regression test, an
+   alert, or a rule in the instruction file. An incident that leaves only
+   a memory will repeat.
+
+The security rules hold even mid-incident: never disable RLS, skip webhook
+verification, or expose a secret to stop the bleeding — that trades an
+outage for a breach.
 
 ## Path A — Fixing a bug (reproduce first)
 
@@ -87,7 +113,15 @@ Make the minimal change. Then:
 One short paragraph: what the feature does, the user flow, and — explicitly —
 **what it touches**: new tables? a migration? changes to shared components or
 existing API routes? Payments? This "what it touches" answer decides how careful
-the rest of the work is.
+the rest of the work is. Two rules from the build phase still bind here:
+
+- **The write side implies a read side.** If the feature creates or changes
+  data, name where each affected role sees and manages it (list/detail,
+  lifecycle states, who may act on it) — that surface is part of the same
+  feature, not a follow-up.
+- **Docs stay true.** If the change alters roles, tenancy, billing, or a
+  core workflow, update `docs/spec.md` (and `docs/blueprint.md` if present)
+  BEFORE coding, so the documents keep describing the real product.
 
 ### 2. Find the seam
 Locate where the feature plugs in. Read the neighboring code and match its
