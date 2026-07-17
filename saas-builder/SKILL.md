@@ -138,7 +138,16 @@ If the harness has a plan/read-only mode, use it (in Claude Code: plan mode,
 Shift+Tab; `/model opusplan` pairs Opus planning with Sonnet execution if
 available). In a harness without one (Codex, Antigravity), present the full
 plan in chat and touch no files until it's approved — the discipline is the
-point, the mode is a convenience. Produce an ordered task list
+point, the mode is a convenience.
+
+Model economics follow the risk table, and model choice is the user's
+lever, not yours — recommend the split once, at session start: the thinking
+phases (blueprint/spec, this plan, the schema and risk sketches, the
+Phase 5 fresh-context review) deserve the strongest available model; bulk
+UI and CRUD execution runs fine on a faster one. `/model opusplan`
+automates exactly that split in Claude Code. Do not build per-task
+subagent orchestration to simulate it — cold subagents re-derive context
+on every task and cost more than they save. Produce an ordered task list
 of small, individually-committable steps. A good step is one PR-sized change you
 could review in a couple of minutes, with a stated way to verify it on its own
 (a command, a screenshot, a spec criterion it advances) — not "testable once
