@@ -26,6 +26,13 @@ visual craft; this file adds the product-flow layer it doesn't cover.
   color palette, and a font pairing (its style/color/typography/product
   domains). Pick from curated options, then adapt to the personality — this
   beats improvising a palette from memory.
+- **Overrides are the user's call.** Deviating from what a design source
+  recommended — a motion level, a pattern, a palette — may be right (a
+  conversion page for mid-range phones has different needs than a
+  portfolio), but the decision is not yours to make alone: present the
+  recommendation, your concern, and the trade-off, get a yes, THEN record
+  the override and its reason in `docs/design.md`. A silently overridden
+  recommendation is an improvised design decision wearing a justification.
 - **Persist the direction to `docs/design.md`** alongside the spec and plan:
   the personality pair, the chosen style and palette names, the font pairing,
   the token values (including motion), the layout direction (density:

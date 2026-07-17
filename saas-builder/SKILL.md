@@ -258,8 +258,13 @@ compaction and `/clear`.
    inventing them. Write the chosen direction to `docs/design.md` —
    personality, tokens (including motion tokens), style and palette names,
    and the reference product — so every later screen and session styles
-   against the same record. If the official `frontend-design`
-   skill is installed, apply it here too.
+   against the same record. **Present the direction to the user for
+   approval before writing it** — and if you want to deviate from anything
+   a design source recommended (a motion level, a pattern, a palette),
+   present the recommendation, your concern, and the trade-off, and get a
+   yes; never override-and-record silently. Design direction is taste, and
+   taste belongs to the user. If the official `frontend-design` skill is
+   installed, apply it here too.
 7. Commit. From here, commit after every working step.
 
 ### Phase 4 — Build loop (one wave at a time)
