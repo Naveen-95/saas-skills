@@ -170,6 +170,13 @@ user's reaction after each:
    states feel deliberate.
 5. **Polish** — alignment, spacing fine-tuning, the last 5%.
 
+If Emil Kowalski's skills are installed, run the passes WITH
+`emil-design-eng` — it encodes the invisible details (spacing rhythm,
+state transitions, interaction feel, component proportions) that separate
+premium from default — and audit pass 4 with `review-animations`. These
+skills are why two screens with identical tokens can read as polished or
+as slop.
+
 The taste test after the passes: would this screen look out of place next to
 the reference product? If yes, name the specific offending element and run
 another pass on it. The user supplies the taste; ask them to look.

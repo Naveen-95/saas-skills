@@ -296,8 +296,10 @@ the wave's plan entry.
   checklist: acceptance criteria as GIVEN/WHEN/THEN with observable
   results including the failure cases, screenshots or Playwright at mobile
   width, the design-ux flow rules (one dominant primary action, 3-click
-  budget). One browser pass over four screens costs a fraction of four
-  separate cycles. **Security gates are never batched:** the moment a task
+  budget), and conformance to `docs/design.md` — tokens actually applied,
+  no unmodified library defaults, effects only where the recorded
+  personality sanctions them. One browser pass over four screens costs a
+  fraction of four separate cycles. **Security gates are never batched:** the moment a task
   touches auth, data access, or payments, the matching section of
   `references/security-checklist.md` runs before that task's commit.
 - **Commit** per working step with a clear message.
