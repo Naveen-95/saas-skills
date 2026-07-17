@@ -141,13 +141,14 @@ plan in chat and touch no files until it's approved — the discipline is the
 point, the mode is a convenience.
 
 Model economics follow the risk table, and model choice is the user's
-lever, not yours — recommend the split once, at session start: the thinking
-phases (blueprint/spec, this plan, the schema and risk sketches, the
-Phase 5 fresh-context review) deserve the strongest available model; bulk
-UI and CRUD execution runs fine on a faster one. `/model opusplan`
-automates exactly that split in Claude Code. Do not build per-task
-subagent orchestration to simulate it — cold subagents re-derive context
-on every task and cost more than they save. Produce an ordered task list
+lever, not yours: the thinking phases (blueprint/spec, this plan, the
+schema and risk sketches, the Phase 5 fresh-context review) deserve the
+strongest available model; bulk UI and CRUD execution runs fine on a
+faster one. `/model opusplan` automates exactly that split in Claude Code.
+The moment to surface this is the plan checkpoint below — not "session
+start", which has already passed by the time this skill is read. Do not
+build per-task subagent orchestration to simulate it — cold subagents
+re-derive context on every task and cost more than they save. Produce an ordered task list
 of small, individually-committable steps. A good step is one PR-sized change you
 could review in a couple of minutes, with a stated way to verify it on its own
 (a command, a screenshot, a spec criterion it advances) — not "testable once
@@ -193,8 +194,13 @@ Context7 MCP or fetch the official docs rather than trusting memory, because
 these APIs churn and stale patterns are a top source of broken builds. See
 `references/stack.md` for the specific churn-prone spots.
 
-**Checkpoint:** show the plan and get a yes before building. Once confirmed,
-write it to `docs/plan.md`.
+**Checkpoint:** show the plan and get a yes before building. In the SAME
+message, state the model handoff: which model this session is running on,
+and whether to stay or switch for the build phase ("planning is done —
+execution runs fine on a faster model; switch with /model if you want, or
+say continue"). You cannot switch models yourself; this checkpoint is the
+user's one natural moment to. Once confirmed, write the plan to
+`docs/plan.md`.
 
 General rule for Phases 0–2: any large artifact the user pastes or you
 generate — a JSON schema, an API payload, competitor research, a data model
@@ -256,12 +262,19 @@ the project instruction file for the rules and PROGRESS.md for the state,
 and can continue without re-explaining. Keep it under a screen; prune
 completed noise.
 
-Manage context proactively, don't wait for degradation: clear context
-(`/clear` in Claude Code, a fresh session elsewhere) between unrelated tasks
-(PROGRESS.md carries the state across), compact at natural
-breakpoints on long single tasks — after a milestone commit, not mid-edit.
-Quality degrading, repeated forgetting of instructions, or a second failed
-fix are signals to reset now, not push on.
+A full build is NOT one unbroken session. PROGRESS.md is current at every
+commit, which makes a reset safe at any commit — use that. Reset (`/clear`
+or compact in Claude Code, a fresh session elsewhere) at these concrete
+points, not "when it feels degraded":
+
+- After the Phase 3 scaffold commit, before the first feature slice.
+- Every 3–5 completed slices in Phase 4, at a commit.
+- Immediately on any of: quality drifting, instructions being forgotten, a
+  second failed fix, or context usage past roughly half if the harness
+  shows it.
+
+Large-context models make an unbroken session survivable, not optimal —
+quality drift arrives well before the context limit does.
 
 **Every time you touch data access, auth, or payments, run the matching section
 of `references/security-checklist.md` before committing.** This is
