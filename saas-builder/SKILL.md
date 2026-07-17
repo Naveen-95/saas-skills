@@ -145,14 +145,16 @@ lever, not yours: the thinking phases (blueprint/spec, this plan, the
 schema and risk sketches, the Phase 5 fresh-context review) deserve the
 strongest available model; bulk UI and CRUD execution runs fine on a
 faster one. `/model opusplan` automates exactly that split in Claude Code.
-The moment to surface this is the plan checkpoint below — not "session
-start", which has already passed by the time this skill is read. Do not
-build per-task subagent orchestration to simulate it — cold subagents
-re-derive context on every task and cost more than they save. Produce an ordered task list
-of small, individually-committable steps. A good step is one PR-sized change you
-could review in a couple of minutes, with a stated way to verify it on its own
-(a command, a screenshot, a spec criterion it advances) — not "testable once
-three later steps land".
+The moments to surface this are the plan checkpoint and every wave start
+below — not "session start", which has already passed by the time this
+skill is read. Do not build per-task subagent orchestration to simulate
+it — cold subagents re-derive context on every task and cost more than
+they save.
+
+Produce an ordered task list of small, individually-committable steps. A
+good step is one PR-sized change you could review in a couple of minutes,
+with a stated way to verify it on its own (a command, a screenshot, a spec
+criterion it advances) — not "testable once three later steps land".
 
 For each step, choose the verification by what the step risks, not by habit:
 
@@ -194,13 +196,27 @@ Context7 MCP or fetch the official docs rather than trusting memory, because
 these APIs churn and stale patterns are a top source of broken builds. See
 `references/stack.md` for the specific churn-prone spots.
 
-**Checkpoint:** show the plan and get a yes before building. In the SAME
-message, state the model handoff: which model this session is running on,
-and whether to stay or switch for the build phase ("planning is done —
-execution runs fine on a faster model; switch with /model if you want, or
-say continue"). You cannot switch models yourself; this checkpoint is the
-user's one natural moment to. Once confirmed, write the plan to
-`docs/plan.md`.
+**Group the tasks into waves.** A wave is the unit of execution,
+verification, and session — not of commit:
+
+- Merge 2–6 tasks into one wave when they share a risk tier and surface
+  (three UI screens over the same data, a batch of CRUD endpoints) and have
+  no interleaved dependencies — one explore pass, one combined verify pass,
+  far fewer tool calls than task-by-task ceremony.
+- Any task touching auth, RLS, payments, or schema/migrations — and any
+  spike — is a wave of ONE.
+- Each wave's entry in `docs/plan.md` states: goal, its tasks, expected
+  files, the combined verification checklist (the union of the risk-table
+  evidence for its tasks), a one-line "done means", and a **model
+  recommendation** — the strongest available model for solo/high-risk and
+  design-defining waves, a faster model for UI/CRUD waves.
+
+**Checkpoint:** show the plan — waves, their tasks, and each wave's model
+recommendation — and get a yes before building. In the SAME message, state
+the handoff for Wave 1: "this session is on <model>; Wave 1 recommends
+<model> — switch with /model, or say continue." You cannot switch models
+yourself; wave boundaries are the user's moments to. Once confirmed, write
+the plan to `docs/plan.md`.
 
 General rule for Phases 0–2: any large artifact the user pastes or you
 generate — a JSON schema, an API payload, competitor research, a data model
@@ -238,22 +254,41 @@ compaction and `/clear`.
    skill is installed, apply it here too.
 6. Commit. From here, commit after every working step.
 
-### Phase 4 — Build loop
+### Phase 4 — Build loop (one wave at a time)
 
-For each task from the plan, run **Explore -> Plan -> Code -> Verify -> Commit**:
+Work wave by wave from `docs/plan.md`. Never start a wave without the
+user's go.
 
-- **Explore**: read the files you're about to touch before editing them.
-- **Code**: implement the one step. Resist doing three steps at once — small
-  diffs are reviewable, big ones hide bugs. Every screen ships with its empty,
-  loading, and error states — a screen without them is not done.
-- **Verify**: run it against the feature's acceptance criteria from the spec —
-  GIVEN/WHEN/THEN, observable results, including the failure case. For UI, take
-  a screenshot or use Playwright MCP to confirm it actually renders and the flow
-  works — do not claim done from code alone. Check the screen at mobile width
-  against the flow rules in `references/design-ux.md`: one dominant primary
-  action, within the 3-click budget to core value. A feature is done when its
-  criteria pass, not when the code compiles.
-- **Commit**: a clear message, then move on.
+**At every wave start**, announce the wave (goal, tasks) and surface its
+model recommendation from the plan for user input: "Wave N recommends
+<model>; this session is on <model> — switch with /model, or say
+continue." WAIT for the answer. A wave start is also the natural fresh
+session point: resuming costs only the instruction file, PROGRESS.md, and
+the wave's plan entry.
+
+**Within the wave:**
+
+- **Explore once** for the whole wave: read the files all its tasks touch
+  before editing anything.
+- **Code** one task at a time — commits stay small and reviewable even
+  though the wave batches everything else. Every screen ships with its
+  empty, loading, and error states — a screen without them is not done.
+- **Verify cheaply as you go** (build passes, the screen renders), but run
+  the full evidence pass ONCE at wave end against the wave's combined
+  checklist: acceptance criteria as GIVEN/WHEN/THEN with observable
+  results including the failure cases, screenshots or Playwright at mobile
+  width, the design-ux flow rules (one dominant primary action, 3-click
+  budget). One browser pass over four screens costs a fraction of four
+  separate cycles. **Security gates are never batched:** the moment a task
+  touches auth, data access, or payments, the matching section of
+  `references/security-checklist.md` runs before that task's commit.
+- **Commit** per working step with a clear message.
+
+**At wave end — hard pause.** Update PROGRESS.md; update any other doc the
+wave moved (spec/design/blueprint if scope or direction changed); report
+in one short message — what shipped, the evidence, what the next wave is —
+and ASK whether to start it. Do not roll into the next wave on your own,
+and recommend starting it in a fresh session.
 
 Keep a **PROGRESS.md** at the project root and update it at every commit:
 what's done (one line each), key decisions made (and why, one line), and
@@ -267,11 +302,12 @@ commit, which makes a reset safe at any commit — use that. Reset (`/clear`
 or compact in Claude Code, a fresh session elsewhere) at these concrete
 points, not "when it feels degraded":
 
-- After the Phase 3 scaffold commit, before the first feature slice.
-- Every 3–5 completed slices in Phase 4, at a commit.
+- After the Phase 3 scaffold commit, before the first wave.
+- At every wave boundary — the hard pause IS the reset point; start the
+  next wave fresh.
 - Immediately on any of: quality drifting, instructions being forgotten, a
   second failed fix, or context usage past roughly half if the harness
-  shows it.
+  shows it — finish the current task, commit, and pause the wave early.
 
 Large-context models make an unbroken session survivable, not optimal —
 quality drift arrives well before the context limit does.
