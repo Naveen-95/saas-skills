@@ -265,7 +265,16 @@ compaction and `/clear`.
    yes; never override-and-record silently. Design direction is taste, and
    taste belongs to the user. If the official `frontend-design` skill is
    installed, apply it here too.
-7. Commit. From here, commit after every working step.
+7. **Write the landing page copy per `references/copywriting.md`** — this
+   is its own step because copy written as a side effect of scaffolding
+   comes out as spec language, and spec language does not sell. In order:
+   answer the four positioning questions (save them under "Positioning" in
+   `docs/design.md`); if the buyer's words and objections aren't already
+   evidenced on disk, run the research step into `docs/copy-research.md`;
+   then present 2–3 headline/subhead pairs built from DIFFERENT angles
+   (outcome, enemy, onlyness) and let the user pick before the copy goes
+   into the page. Never ship the spec's pitch sentence as the hero.
+8. Commit. From here, commit after every working step.
 
 ### Phase 4 — Build loop (one wave at a time)
 
