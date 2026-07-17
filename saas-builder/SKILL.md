@@ -241,7 +241,15 @@ compaction and `/clear`.
    secret-blocking commit hook especially — so this protection stops depending
    on anyone remembering it.
 4. Wire up Supabase client (server + browser), auth, and a health-check page.
-5. Set the visual direction per `references/design-ux.md`: derive the design
+5. **Install the component base** — this step is why builds look premium
+   instead of hand-rolled: `npx shadcn@latest init` (see `references/stack.md`),
+   and propose connecting the shadcn and MagicUI MCP servers (user approves)
+   so components are pulled as real code, not guessed. From here, product
+   screens are COMPOSED from shadcn primitives and landing/dashboard
+   expressiveness comes from MagicUI within the motion budget — hand-writing
+   a primitive or effect these libraries already ship is a defect, not a
+   style choice.
+6. Set the visual direction per `references/design-ux.md`: derive the design
    personality from the reference product, define the design tokens (font
    pairing, spacing, one accent, radius) in config BEFORE building any screen,
    and scaffold the public landing page as the root route. If the
@@ -252,7 +260,7 @@ compaction and `/clear`.
    and the reference product — so every later screen and session styles
    against the same record. If the official `frontend-design`
    skill is installed, apply it here too.
-6. Commit. From here, commit after every working step.
+7. Commit. From here, commit after every working step.
 
 ### Phase 4 — Build loop (one wave at a time)
 
@@ -271,8 +279,13 @@ the wave's plan entry.
 - **Explore once** for the whole wave: read the files all its tasks touch
   before editing anything.
 - **Code** one task at a time — commits stay small and reviewable even
-  though the wave batches everything else. Every screen ships with its
-  empty, loading, and error states — a screen without them is not done.
+  though the wave batches everything else. Compose screens from the
+  component sources recorded in `docs/design.md`: shadcn primitives for
+  forms, buttons, dialogs, tables, accordions; MagicUI where the motion
+  budget sanctions it. Search them via their MCP servers when connected.
+  Hand-write a component only when neither library ships it. Every screen
+  ships with its empty, loading, and error states — a screen without them
+  is not done.
 - **Verify cheaply as you go** (build passes, the screen renders), but run
   the full evidence pass ONCE at wave end against the wave's combined
   checklist: acceptance criteria as GIVEN/WHEN/THEN with observable
