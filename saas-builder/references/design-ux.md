@@ -12,6 +12,15 @@ visual craft; this file adds the product-flow layer it doesn't cover.
 - **Derive a personality from the reference product** named in intake (Phase 0,
   question 5). One adjective pair: "warm + trustworthy", "sharp + technical",
   "playful + fast". Every visual choice serves it.
+- **When the user provides screenshots** (a competitor, a product they admire,
+  a design they like): read them and extract the SYSTEM, not the pixels —
+  the personality pair, density, dominant neutral + accent direction, type
+  scale contrast, radius/shadow character, and what specifically makes it
+  feel premium. Write that extraction into `docs/design.md` as the working
+  reference. Never trace a screenshot pixel-for-pixel or lift its brand
+  assets — recreate the feel with original expression, same rule as clone
+  mode. A competitor screenshot is also copy-research input: what they
+  claim, and which of their phrases go on the banned list.
 - **Source the choices, don't invent them.** If the `ui-ux-pro-max` skill is
   installed, query its database for this product type: a matching style, a
   color palette, and a font pairing (its style/color/typography/product
@@ -64,6 +73,11 @@ the product type. Record in `docs/design.md`:
   movement, keep subtle opacity).
 - **Library:** CSS transitions for simple feedback; a React motion library
   for app interactions; GSAP only for landing-page choreography.
+- **Craft:** if Emil Kowalski's animation skills are installed
+  (`emilkowalski/skills` — `emil-design-eng`, `review-animations`), apply
+  them for execution quality — easing choice, physicality, interruptibility.
+  They govern how well each animation is built; this file still governs
+  where motion may exist and at what level.
 
 ## Flow rules (apply to every screen in Phase 4)
 
