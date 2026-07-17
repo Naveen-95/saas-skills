@@ -73,11 +73,13 @@ the product type. Record in `docs/design.md`:
   movement, keep subtle opacity).
 - **Library:** CSS transitions for simple feedback; a React motion library
   for app interactions; GSAP only for landing-page choreography.
-- **Craft:** if Emil Kowalski's animation skills are installed
-  (`emilkowalski/skills` — `emil-design-eng`, `review-animations`), apply
-  them for execution quality — easing choice, physicality, interruptibility.
-  They govern how well each animation is built; this file still governs
-  where motion may exist and at what level.
+- **Craft:** apply Emil Kowalski's animation skills (`emil-design-eng` for
+  building, `review-animations` for auditing) to every animation you write —
+  they govern execution quality (easing choice, physicality,
+  interruptibility) while this file governs where motion may exist and at
+  what level. If they are not installed, ask the user once at Phase 3:
+  offer `npx skills@latest add emilkowalski/skills` with one line on what
+  it adds; on a no, proceed with this file's rules alone and don't re-ask.
 
 ## Flow rules (apply to every screen in Phase 4)
 
