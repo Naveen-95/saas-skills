@@ -49,8 +49,21 @@ Before deciding anything:
   add X"), do the fix first, ship it, then treat the addition as a separate
   feature.
 
+- Check `git status` before touching anything. Unrelated uncommitted work
+  in the tree is a hazard: flag it to the user and agree how to isolate
+  (commit it, stash it, or avoid those files) BEFORE editing anything they
+  share — never sweep a stranger's changes into your commit.
+
 Never start editing blind. If you can't yet point to the file and line that
 matters, you are not ready to change it.
+
+**This skill IS the process.** While it runs, do not layer external
+process skills (brainstorming, plan-writing, TDD ceremony,
+subagent-driven-development) on top — the paths below already cover
+diagnosis, scoping, and risk-proportionate verification. And the evidence
+bar adapts to the repo: where there is no automated-test harness by
+design, substitute scripted end-to-end runs, SQL assertions, or live
+checks — the bar is evidence, not tooling.
 
 ### Adopting an app built elsewhere (no instruction file, no docs)
 

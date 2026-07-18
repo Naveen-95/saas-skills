@@ -32,6 +32,20 @@ deployment path, and conventions — and follow them. Do not replace an
 established stack, tooling, or style with the default stack casually; the
 default is for greenfield projects.
 
+**Changing an app that already runs is not this skill's job.** A bug fix or
+feature addition to an existing, running product belongs to the
+saas-maintainer skill — even if the user invoked saas-builder. Say so and
+switch; maintainer carries the existing-repo path (orientation, adoption of
+undocumented codebases, live-data migration safety). This skill applies to
+an existing repo only for Phase 6 hardening or a new product built inside it.
+
+**This skill IS the process.** While it runs, do not layer other process
+skills on top — no external brainstorming, plan-writing, TDD, or
+subagent-driven-development workflows; the phases already cover design,
+planning, and risk-proportionate verification, and per-task subagent
+orchestration is explicitly rejected here. Domain skills (design databases,
+animation craft, component sources) plug in only where the phases name them.
+
 ---
 
 ## The loop
@@ -165,6 +179,17 @@ For each step, choose the verification by what the step risks, not by habit:
 | Auth/data access/storage | two-user test: user B cannot reach user A's data |
 | Payments/webhooks | signature verified, idempotent, test-mode end-to-end run |
 | Schema/destructive change | migration reviewed, backup/rollback plan stated |
+
+If the repo has no automated-test harness (some legitimately don't),
+substitute the cheapest equivalent evidence — a scripted end-to-end run, an
+SQL assertion, a build gate plus a live check — and name the substitution
+in the plan. The bar is evidence, not tooling; a missing harness never
+silently downgrades verification to "it compiles".
+
+Self-check the plan before presenting it: every artifact a task produces —
+a type, a function, a table, an endpoint — must be consumed by a named
+later task. An artifact nothing consumes is dead code scheduled in advance;
+cut it or cut the task.
 
 When the product has more than one role or more than a few tables, the
 plan's first artifact is a schema sketch: entities, relationships, state
