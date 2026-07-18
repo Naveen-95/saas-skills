@@ -235,6 +235,10 @@ wrong when changing a live app.
   later instead of bundling them in.
 - When unsure whether a change is safe on live data, ask before running it, not
   after.
+- **Log skill friction, don't fix it mid-task.** When this skill's guidance
+  is wrong, silent, or fights the repo, append one line to
+  `docs/skill-notes.md` and continue; the skill-harvest skill processes
+  notes later in a separate session.
 
 ## Reference files
 
