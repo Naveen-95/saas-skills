@@ -454,12 +454,15 @@ codebase polishes over its holes.
 - **Say what you did NOT do.** End substantial steps with a one-line note on
   what is stubbed, skipped, or needs the user's attention.
 - **Hold scope.** New ideas mid-build go on the "later" list, not into v1.
-- **Log skill friction, don't fix it mid-build.** When this skill's guidance
-  is wrong for the situation, silent where a decision was needed, or fights
-  the repo, append one line to the project's `docs/skill-notes.md`
-  (`date — skill/section — what happened — suggested fix`) and keep
-  building. Skill edits happen later via the skill-harvest skill in a
-  separate session — never inside a build.
+- **Log skill friction, don't fix it mid-build.** Append one line to the
+  project's `docs/skill-notes.md` whenever one of these OBSERVABLE events
+  happens: you deviate from something this skill says; an instruction
+  cannot be executed as written; you have to ask the user something no
+  file answers; or the user corrects your process or output (quote their
+  words verbatim — highest-signal note there is). Format:
+  `date — skill/section — what happened`. Report the symptom, don't
+  diagnose — a suggested fix is optional. Skill edits happen later via
+  the skill-harvest skill in a separate session — never inside a build.
 - **Some decisions are never the agent's.** Pricing and refund policy,
   legal/compliance signoff, data retention and deletion policy, production
   accounts/domains/vendor contracts, launch approval, and any irreversible

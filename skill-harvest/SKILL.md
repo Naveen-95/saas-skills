@@ -23,6 +23,16 @@ Do not read build transcripts, whole repos, or unrelated references. If a
 note is too vague to act on, ask the user one question or drop it — do not
 excavate.
 
+## Notes are symptom reports, not verdicts
+
+They were usually written by a fast model mid-build. Re-derive every
+diagnosis yourself from the skill text and the reported event; ignore a
+note's suggested fix unless it survives your own triage. Signal ranking:
+a verbatim user correction is the strongest evidence there is; "an
+instruction couldn't execute as written" is strong; an agent's
+self-diagnosis is the weakest. Run the harvest on the strongest available
+model — this is a thinking phase.
+
 ## Triage each note with the improvisation filter
 
 - **Real gap** — a decision got improvised mid-build because no file
